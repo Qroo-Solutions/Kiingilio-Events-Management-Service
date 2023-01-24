@@ -3,11 +3,19 @@ package com.qroo.events.data.vo
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import java.util.*
-import javax.persistence.*
+import jakarta.persistence.*
+import lombok.Getter
+import lombok.NoArgsConstructor
+import lombok.RequiredArgsConstructor
+import lombok.Setter
 
 @Entity
+@NoArgsConstructor
+@Getter
+@Setter
+@RequiredArgsConstructor
 @Table(name = "kiingilio_events")
-public final data class Event(
+data class Event(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long,
     @ManyToOne(fetch = FetchType.LAZY)
     val organization: Organizations,
@@ -26,7 +34,7 @@ public final data class Event(
     val emailAddress: String,
     val url: String,
     val eventType: String,
-    val active: Boolean,
+    val status: Boolean,
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
